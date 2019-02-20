@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    value: 0
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <h1 id="number">{this.state.value}</h1>
+        <button onClick={() => {this.setState({value: this.state.value+1})}}>+</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button onClick={() => {this.setState({value: this.state.value-1})}}>-</button>
       </div>
     );
   }
