@@ -1,4 +1,26 @@
-body {
+.App {
   text-align: center;
-  font-size: 200%;
+  margin: 5% 20%;
+}
+
+div.p-inputgroup {
+  display: inline;
+  margin-left: 2%;
+}
+
+div.input {
+  margin: 5%;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.box {
+  background-color: #cce4f7;
+  height: 50px;
+  width: 60px;
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0 5px;
 }
