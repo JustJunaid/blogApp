@@ -25,11 +25,7 @@ db.once("open", () => console.log("connected to the database"));
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 // API calls
-app.get('/', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
-
-app.post('/api/addData', (req, res) => {
+app.post('/addData', (req, res) => {
   db.collection('Building').insertOne(
     { 'name': req.body.name, 
     'floors': req.body.floors, 
@@ -40,14 +36,25 @@ app.post('/api/addData', (req, res) => {
     res.json({'result': 'Success', 'message': 'Data Added Successfully'})
     });
 
-// Delete all the data from the DB
+app.get('/getData', (req, res) => {
+  const name = (req.param)
+  db.collection('Building').findOne({name: name}, (err, data) => {
+    if (err) throw err
+   res.json(data)
+  })
+})
 
-// db.collection('Building').deleteMany(
-//   {}, function(err, data) {
-//         if(err) throw err;
-//         console.log(data)
-//         //Doc saved
-//       });
+
+// Delete all the data from the DB 
+app.get('/deleteData', (req, res) => {
+  db.collection('Building').deleteMany(
+    {}, function(err, data) {
+          if(err) throw err;
+          res.json({'result': 'Success', 'message': 'Data Deleted Successfully'})
+          //Doc saved
+        });
+})
+
 
 
 if (process.env.NODE_ENV === 'production') {

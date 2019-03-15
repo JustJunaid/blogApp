@@ -1,6 +1,12 @@
+body { 
+  background-color: #f5f7f8;
+}
+
 .App {
   text-align: center;
-  margin: 5% 20%;
+  margin: 3% 5%;
+  display: flex;
+  flex-direction: row;
 }
 
 div.p-inputgroup {
@@ -23,4 +29,33 @@ div.input {
   border-radius: 5px;
   display: inline-block;
   margin: 0 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .deleteButton {
+    margin: -9% !important;
+  }
+
+  .col-md-12 {
+    width: 100% !important;
+    display: block !important;
+    flex-direction: row-reverse;
+    margin-top: 20px;
+  }
+  .App {flex-direction: column}
+  .App :nth-child(1) { order: 2; }
+  .App :nth-child(2) { order: 1; }
+}
+
+@media only screen and (min-width: 600px) {
+  .col-2 {
+    display: inline-grid;
+    margin-top: 18px;
+    height: 80vh;
+  }
+  
+  .col-10 {
+    display: inline;
+    float: right;
+  }
 }
