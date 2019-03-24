@@ -59,15 +59,15 @@ class App extends Component {
       method: 'GET',
       params: {'junaid': 'name'},
     })
-    if (response.status !== 200) throw Error(body.message)
     const body = await response.json()
+    if (response.status !== 200) throw Error(body.message)
     return body
   };
 
   deleteApi = async () => {
     const response = await fetch('/deleteData')
-    if (response.status !== 200) throw Error(body.message)
     const body = await response.json()
+    if (response.status !== 200) throw Error(body.message)
     return body 
   }
 
@@ -82,7 +82,7 @@ class App extends Component {
 
   changeStateBuildingNameSearch = (e) => {
     console.log(e.target.innerText)
-    this.setState({searchBuildingByName: e.target.innerText})
+    // this.setState({searchBuildingByName: e.target.innerText})
     console.log(this.state)
   }
 

@@ -9,8 +9,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // this is our MongoDB database
-// const dbRoute = "mongodb://jelo:a9bc839993@ds151382.mlab.com:51382/jelotest";
-const dbRoute = "mongodb://localhost:27017/Building";
+const password = encodeURI('Junaid@1234')
+const dbRoute = `mongodb+srv://Junaid:${password}@cluster0-swskp.mongodb.net/Compound?retryWrites=true`;
+// const dbRoute = "mongodb://localhost:27017/Building";
 
 mongoose.connect(
   dbRoute,
