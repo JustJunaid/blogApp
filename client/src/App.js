@@ -8,7 +8,6 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import {Messages} from 'primereact/messages';
 import {Sidebar} from 'primereact/sidebar';
-import {Message} from 'primereact/message';
 var _ = require('lodash');
 
 class App extends Component {
@@ -158,7 +157,7 @@ class App extends Component {
           <form action="" method="GET" onSubmit={this.submitForm}>
           <Messages ref={(el) => this.messages = el}></Messages>
             <Fieldset legend={`Building Number ${this.BUILDING_INIT}`}>
-            <Message style={{cursor: 'pointer', float: 'right', marginTop: '-12%'}} onMouseEnter={this.deleteApi} className="deleteButton" severity="error" text="Drop DataBase"></Message>
+            <Button label={'Delete All Data'} className="p-button-info p-button-rounded" style={{cursor: 'pointer', float: 'right', marginTop: '-12%'}} onClick={this.deleteApi} className="deleteButton"/>
               <div className="p-grid">
                 <div className="p-col-12 p-md-4">
                   <div className="input">

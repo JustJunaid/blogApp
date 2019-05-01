@@ -1,0 +1,9 @@
+POST http://localhost:5000/addData
+Content-Type: application/json
+
+{
+    "name": "Small Building",
+    "floors": 2,
+    "flats": [3, 1]
+}
+
