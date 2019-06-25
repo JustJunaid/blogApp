@@ -19,16 +19,19 @@ mongoose.connect(
 
 const db = mongoose.connection
 
-// API calls
-app.post('/addData', (req, res) => {
+app.get('/getPreferences', (req, res) => {
+  db.collection('preferences').find({}).toArray((err, data) => {
+    if (err) res.json({'success': false, 'error': err})
+    res.json({'success': true, data: data})
+  })
+})
+
+app.post('/addPreferences', (req, res) => {
   db.collection('Building').insertOne(
-    { 'name': req.body.name, 
-    'floors': req.body.floors, 
-    'flats': req.body.flats }, 
-        function(err, data) {
-          if(err) throw err;
+    req.body, (err, data) => {
+          if(err) res.json({'success': false, 'error': err})
+          res.json({'result': 'Success', 'message': 'Data Added Successfully', data: data})
         });
-    res.json({'result': 'Success', 'message': 'Data Added Successfully'})
     });
 
 // app.get('/getData', (req, res) => {
@@ -41,7 +44,7 @@ app.post('/addData', (req, res) => {
 // })
 
 
-// // Delete all the data from the DB 
+// Delete all the data from the DB 
 // app.get('/deleteData', (req, res) => {
 //   db.collection('Building').deleteMany(
 //     {}, (err, data) => {
@@ -62,4 +65,4 @@ app.post('/addData', (req, res) => {
 // }
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`))

@@ -1,61 +1,60 @@
-body { 
-  background-color: #f5f7f8;
+* {
+  box-sizing: border-box;
 }
 
 .App {
   text-align: center;
-  margin: 3% 5%;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+form {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
 }
 
-div.p-inputgroup {
-  display: inline;
-  margin-left: 2%;
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: 1px transparent solid;
+}
+.menu-item-wrapper {
+  border: 1px transparent solid;
+}
+.menu-item-wrapper.active {
+  border: 1px blue solid;
+}
+.menu-item.active {
+  border: 1px green solid;
 }
 
-div.input {
-  margin: 5%;
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.box {
-  background-color: #cce4f7;
-  height: 50px;
-  width: 60px;
-  border-radius: 5px;
-  display: inline-block;
-  margin: 0 5px;
-}
-
-@media only screen and (max-width: 600px) {
-  .deleteButton {
-    margin: -9% !important;
-  }
-
-  .col-md-12 {
-    width: 100% !important;
-    display: block !important;
-    flex-direction: row-reverse;
-    margin-top: 20px;
-  }
-  .App {flex-direction: column}
-  .App :nth-child(1) { order: 2; }
-  .App :nth-child(2) { order: 1; }
-}
-
-@media only screen and (min-width: 600px) {
-  .col-2 {
-    display: inline-grid;
-    margin-top: 18px;
-    height: 80vh;
-  }
-  
-  .col-10 {
-    display: inline;
-    float: right;
-  }
+.scroll-menu-arrow--disabled {
+  visibility: hidden;
 }
