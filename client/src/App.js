@@ -4,13 +4,13 @@ import {GridList, GridListTile, Button, GridListTileBar} from '@material-ui/core
 
 const categories = [
   {
-    Technology: ['this', 'another']
+    Technology: ['this', 'another', 'junaid', 'deep', 'rohit', 'rohan', 'shail', 'manu']
   },
   {
     Fashion: ['as', 'dfd']
   },
   {
-    DEve: ['sd', 'lkj']
+    DEve: ['sd', 'lkj', 'sd', 'lkj']
   }
 ]
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
   gridListSubCategories: {
     width: '100%',
-    height: '80vh',
+    height: '75vh',
     marginTop: '30px !important'
   },
   title: {
@@ -42,17 +42,28 @@ const useStyles = makeStyles(theme => ({
 export default function SingleLineGridList() {
   const classes = useStyles();
 
-  const [selectedCategory, setSelectedCategory] = useState('')
-  const [subCategories, setSubCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState(Object.keys(categories[0])[0])
+  const [selectedSubCat, setSelectedSubCat] = useState([])
+  const [subCategories, setSubCategories] = useState(Object.values(categories[0]))
 
   const selectCategory = (e) => {
-    console.log(e.currentTarget.value)
-    setSelectedCategory(selectedCategory)
-    categories.map((category, i) => {
+    setSelectedCategory(e.currentTarget.value)
+    categories.map( category => {
       if (Object.keys(category)[0] === e.currentTarget.value) setSubCategories(Object.values(category))
     })
-    console.log(subCategories)
-    return
+  }
+
+  const selectSubCategory = (e) => {
+    const currentValue = e.currentTarget.innerText
+    // const index = selectedSubCat.indexOf(currentValue)
+    // if (index >= 0) {
+    //   // const chunked = subCategories.filter(currentValue => selectedSubCat.indexOf(currentValue) < 0)
+    //   // console.log(chunked)
+    //   selectedSubCat.splice(index, 1)
+    // } else {
+    //   [...selectedSubCat, currentValue]
+    // }
+    // setSelectedSubCat(selectedSubCat, () => console.log(selectedSubCat))
   }
 
   return (
@@ -70,11 +81,22 @@ export default function SingleLineGridList() {
       </div>
       <div className={classes.root}>
         <GridList cellHeight={180} className={classes.gridListSubCategories}>
-          {subCategories.map((subCategory, i) => (
-            <GridListTile key={i}>
+          {subCategories[0].map((subCategory, i) => (
+            <GridListTile key={i} style={{cursor: 'pointer'}} value={subCategory} onClick={selectSubCategory}>
               <GridListTileBar
-                title={subCategory[i]}
+                title={subCategory}
               />
+            </GridListTile>
+          ))}
+        </GridList>
+      </div>
+      <div className={classes.root}>
+        <GridList className={classes.gridListCategories}>
+          {selectedSubCat.map((subCat, i) => (
+            <GridListTile style={{height: '60px', width: 'fit-content'}} key={i}>
+              <Button color="primary" key={i} value={subCat} className={classes.button}>
+                {subCat}
+              </Button>
             </GridListTile>
           ))}
         </GridList>

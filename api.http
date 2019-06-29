@@ -1,9 +1,14 @@
-POST http://localhost:5000/addData
+GET http://localhost:5000/getPreferences
 Content-Type: application/json
 
-{
-    "name": "Small Building",
-    "floors": 2,
-    "flats": [3, 1]
-}
+#########
+POST  http://localhost:5000/addPreferences
+Content-Type: application/json
 
+[
+    {
+        "_id": "5d11217d1c9d440000465111",
+        "category": "Technology",
+        "subCategories": ["Game Dev"]
+    }
+]

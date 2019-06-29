@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose')
 const path = require('path');
 const app = express();
+const ObjectID = require('mongodb').ObjectID
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,12 +28,17 @@ app.get('/getPreferences', (req, res) => {
 })
 
 app.post('/addPreferences', (req, res) => {
-  db.collection('Building').insertOne(
-    req.body, (err, data) => {
-          if(err) res.json({'success': false, 'error': err})
-          res.json({'result': 'Success', 'message': 'Data Added Successfully', data: data})
-        });
-    });
+  requestBody = req.body
+  requestBody.forEach(obj => {
+    let category = {}
+    category[obj.category] = obj.subCategories
+    console.log(category)
+    // let subCategories = obj.subCategories
+    db.collection('preferences').update({_id: obj.id},
+          {$set: category}, { multi: true }
+       )
+    }, () => res.send({'success': true}))
+});
 
 // app.get('/getData', (req, res) => {
 //   const name = (req.param)
